@@ -45,7 +45,7 @@ install:
       Set-Location $ENV:Temp
       New-Item -Type Directory -Name $stage_temp
       Set-Location $stage
-      $zip = "$src_dir\nextpnr-windows_amd64-$($ENV:APPVEYOR_REPO_TAG_NAME).zip"
+      $zip = "$src_dir\nextpnr-ice40-windows_amd64-$($ENV:APPVEYOR_REPO_TAG_NAME).zip"
       Copy-Item "$src_dir\Release\*.dll" '.\'
       Copy-Item "$src_dir\Release\nextpnr-ice40.exe" '.\'
       $libdir = "$($stage)\Lib"
