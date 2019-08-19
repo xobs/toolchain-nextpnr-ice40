@@ -94,7 +94,7 @@ if [ $ARCH == "darwin" ]; then
     do
         mkdir -p /tmp/nextpnr
         pushd /tmp/nextpnr
-        echo "Extracting $dep..."
+        echo "Extracting build requirement $dep..."
         tar xjf $dep
         popd
     done
@@ -104,7 +104,11 @@ if [ $ARCH == "darwin" ]; then
     pushd $PACKAGE_DIR/$NAME
     for dep in $(ls -1 $WORK_DIR/build-data/darwin/install/*.bz2)
     do
+        echo "Extracting runtime requirement $dep..."
         tar xjf $dep
     done
+
+    # Remove any static libraries from the runtime install path
+    find . -name '*.a' | xargs rm -f
     popd
 fi
