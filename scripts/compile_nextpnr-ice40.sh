@@ -53,7 +53,7 @@ elif [ ${ARCH:0:7} == "windows" ]; then
     .
     make -j$J CXX="$CXX" LIBS="-static -static-libstdc++ -static-libgcc -lm"
 else
-    patch -p1 < ${WORK_DIR}/build-data/linux/0001-cmake-fix-static-build.patch
+    # patch -p1 < ${WORK_DIR}/build-data/linux/0001-cmake-fix-static-build.patch
     cmake \
         -DARCH=ice40 \
         -DICEBOX_ROOT="$WORK_DIR/icebox" \
@@ -68,7 +68,7 @@ else
     # across minor versions.
     mkdir libpython3
     cd libpython3
-    for pkg in $(ls -1 ${WORK_DIR}/build-data/linux/*.deb)
+    for pkg in $(ls -1 ${WORK_DIR}/build-data/$ARCH/*.deb)
     do
         echo "Extracting $pkg..."
         ar p $pkg data.tar.xz | tar xvJ
