@@ -40,10 +40,6 @@ mkdir -p $PACKAGES_DIR
 # -- Create the upstream directory and enter into it
 mkdir -p $UPSTREAM_DIR
 
-# -- Fix broken Homebrew on Darwin
-# https://github.com/Homebrew/legacy-homebrew/issues/29938#issuecomment-54896169
-# export PATH=/usr/local/opt/qt5/bin:$PATH
-
 # -- Test script function
 function test_bin {
   . $WORK_DIR/test/test_bin.sh $1

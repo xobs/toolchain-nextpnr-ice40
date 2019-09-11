@@ -49,7 +49,7 @@ install:
       Copy-Item "$src_dir\Release\*.dll" '.\'
       Copy-Item "$src_dir\Release\nextpnr-ice40.exe" '.\'
       $libdir = "$($stage)\Lib"
-      [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\tools\python\Python37.zip", $libdir)
+      [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\tools\python\Python37.zip", $stage)
       [System.IO.Compression.ZipFile]::CreateFromDirectory($stage, $zip)
       Push-AppveyorArtifact "$zip"
       Set-Location $src_dir
