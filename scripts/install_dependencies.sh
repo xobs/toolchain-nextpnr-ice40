@@ -8,7 +8,7 @@ cross_x64="libboost-dev libboost-filesystem-dev libboost-thread-dev \
 for b in $cross_x64; do
     cross_arm64="$cross_arm64 $b:arm64"
     cross_armhf="$cross_armhf $b:armhf"
-    criss_i386="$cross_i386 $b:i386"
+    cross_i386="$cross_i386 $b:i386"
 done
 
 if [ $ARCH == "linux_x86_64" ]; then
