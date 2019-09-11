@@ -1,8 +1,8 @@
 # -- Compile nextpnr-ice40 script
 
 nextpnr_dir=nextpnr
-nextpnr_commit=0d0056a043510d70a39faa84ec0a0db8684c480b
-nextpnr_uri=https://github.com/xobs/nextpnr.git
+nextpnr_commit=927077e03b2e71649a0d691dee8d09bfdf085146
+nextpnr_uri=https://github.com/YosysHQ/nextpnr.git
 
 # -- Setup
 . $WORK_DIR/scripts/build_setup.sh
