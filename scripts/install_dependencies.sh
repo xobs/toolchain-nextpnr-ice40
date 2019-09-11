@@ -1,6 +1,6 @@
 # Install dependencies script
 
-base_packages="build-essential pkg-config python3 python3.6-dev libpython3.6-dev"
+base_packages="build-essential pkg-config python3 python3.6-dev libpython3.6-dev cmake"
 cross_x64="libboost-dev libboost-filesystem-dev libboost-thread-dev \
            libboost-program-options-dev libboost-python-dev libboost-iostreams-dev \
            libboost-system-dev libboost-chrono-dev libboost-date-time-dev \
