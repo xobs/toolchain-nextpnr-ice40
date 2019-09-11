@@ -1,8 +1,8 @@
 # -- Compile nextpnr-ice40 script
 
-NEXTPNR=nextpnr
-COMMIT=c0f02563e8908f28aa8eaa5eef2b886c0a27a2ab
-GITNEXTPNR=https://github.com/YosysHQ/nextpnr
+nextpnr_dir=nextpnr
+nextpnr_commit=0d0056a043510d70a39faa84ec0a0db8684c480b
+nextpnr_uri=https://github.com/xobs/nextpnr.git
 
 # -- Setup
 . $WORK_DIR/scripts/build_setup.sh
@@ -10,15 +10,15 @@ GITNEXTPNR=https://github.com/YosysHQ/nextpnr
 cd $UPSTREAM_DIR
 
 # -- Clone the sources from github
-test -e $NEXTPNR || git clone $GITNEXTPNR $NEXTPNR
-git -C $NEXTPNR pull
-git -C $NEXTPNR checkout $COMMIT
-git -C $NEXTPNR log -1
+test -e $nextpnr_dir || git clone $nextpnr_uri $nextpnr_dir
+git -C $nextpnr_dir fetch
+git -C $nextpnr_dir checkout $nextpnr_commit
+git -C $nextpnr_dir log -1
 
 # -- Copy the upstream sources into the build directory
-rsync -a $NEXTPNR $BUILD_DIR --exclude .git
+rsync -a $nextpnr_dir $BUILD_DIR --exclude .git
 
-cd $BUILD_DIR/$NEXTPNR
+cd $BUILD_DIR/$nextpnr_dir
 
 if [ -e CMakeCache.txt ]
 then
