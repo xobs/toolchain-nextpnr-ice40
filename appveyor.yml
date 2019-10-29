@@ -4,7 +4,7 @@ image:
 environment:
   APPVEYOR_SAVE_CACHE_ON_ERROR: true
   NEXTPNR_COMMIT: 371d33146fcfda9a1c568f46fd1f5775cd4fb1be
-  NEXTPNR_URI: https://github.com/xobs/nextpnr.git
+  NEXTPNR_URI: https://github.com/YosysHQ/nextpnr.git
   VCPKG_COMMIT: 8900146533f8e38266ef89766a2bbacffcb67836
   PYTHON_URI: https://www.python.org/ftp/python/3.7.3/python-3.7.3-embed-amd64.zip
   matrix:
@@ -13,15 +13,14 @@ environment:
 
 install:
   - ps: |
-      If ($Env:TARGET -eq 'x86_64-pc-windows-gnu') {
-        $Env:PATH += ';C:\msys64\mingw64\bin'
-      } ElseIf ($Env:TARGET -eq 'i686-pc-windows-gnu') {
-        $Env:PATH += ';C:\msys64\mingw32\bin'
-      }
+      Set-StrictMode -Version 1.0
+      Set-PSDebug -Trace 1
+      $ErrorActionPreference = "stop"
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       cd C:\tools\vcpkg
       git rev-parse HEAD
       git checkout $env:VCPKG_COMMIT
+      if ($LastExitCode -ne 0) { exit $LastExitCode }
       vcpkg integrate install
       vcpkg install boost-filesystem:x64-windows boost-program-options:x64-windows boost-thread:x64-windows boost-python:x64-windows eigen3:x64-windows
       cd C:\tools
@@ -31,13 +30,17 @@ install:
 
       cd $env:APPVEYOR_BUILD_FOLDER
       git clone $env:NEXTPNR_URI
+      if ($LastExitCode -ne 0) { exit $LastExitCode }
       cd nextpnr
       git checkout $env:NEXTPNR_COMMIT
+      if ($LastExitCode -ne 0) { exit $LastExitCode }
 
       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:/tools/Python/python37.zip", "$($env:APPVEYOR_BUILD_FOLDER)\nextpnr\Lib")
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -DARCH=ice40 "-DICEBOX_ROOT=$($env:APPVEYOR_BUILD_FOLDER.replace("\", "/"))/icebox" -DCMAKE_TOOLCHAIN_FILE=C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -G "Visual Studio 15 2017 Win64" -DPYTHON_EXECUTABLE=C:/tools/Python/python.exe -DBUILD_GUI=OFF -DBUILD_HEAP=ON .
-      cmake --build . --config Release
+      if ($LastExitCode -ne 0) { exit $LastExitCode }
 
+      cmake --build . --config Release
+      if ($LastExitCode -ne 0) { exit $LastExitCode }
 
       $src_dir = "$($ENV:APPVEYOR_BUILD_FOLDER)\nextpnr"
       $stage_temp = [System.Guid]::NewGuid().ToString()
