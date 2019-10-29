@@ -15,7 +15,6 @@ install:
   - ps: |
       Set-StrictMode -Version 1.0
       Set-PSDebug -Trace 1
-      $ErrorActionPreference = "stop"
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       cd C:\tools\vcpkg
       git rev-parse HEAD
