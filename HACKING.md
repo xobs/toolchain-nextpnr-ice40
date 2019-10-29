@@ -10,7 +10,6 @@ adduser --system --disabled-password --shell /bin/bash --uid 1000 builder
 su - builder
 git clone https://github.com/xobs/toolchain-nextpnr-ice40.git
 cd toolchain-nextpnr-ice40
-git checkout bionic
 
 export ARCH=linux_x86_64
 
