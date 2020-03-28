@@ -1,7 +1,7 @@
 # -- Compile nextpnr-ice40 script
 
 nextpnr_dir=nextpnr
-nextpnr_commit=371d33146fcfda9a1c568f46fd1f5775cd4fb1be
+nextpnr_commit=a3ede0293a50c910e7d96319b2084d50f2501a6b
 nextpnr_uri=https://github.com/YosysHQ/nextpnr.git
 
 # -- Setup

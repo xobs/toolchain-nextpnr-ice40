@@ -3,7 +3,7 @@ image:
 
 environment:
   APPVEYOR_SAVE_CACHE_ON_ERROR: true
-  NEXTPNR_COMMIT: 371d33146fcfda9a1c568f46fd1f5775cd4fb1be
+  NEXTPNR_COMMIT: a3ede0293a50c910e7d96319b2084d50f2501a6b
   NEXTPNR_URI: https://github.com/YosysHQ/nextpnr.git
   VCPKG_COMMIT: 8900146533f8e38266ef89766a2bbacffcb67836
   PYTHON_URI: https://www.python.org/ftp/python/3.7.3/python-3.7.3-embed-amd64.zip
